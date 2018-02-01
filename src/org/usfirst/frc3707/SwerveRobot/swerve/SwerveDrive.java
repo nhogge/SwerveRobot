@@ -1,6 +1,7 @@
 package org.usfirst.frc3707.SwerveRobot.swerve;
 
 import edu.wpi.first.wpilibj.GyroBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SwerveDrive {
 
@@ -24,6 +25,19 @@ public class SwerveDrive {
     }
     
     public void drive(double directionX, double directionY, double rotation) {
+    	
+    	//SmartDashboard.putNumber("directionX", directionX);
+    	//SmartDashboard.putNumber("directionY", directionY);
+    	
+    	//if the joystick in the center
+    	if((directionX < 0.2 && directionX > -0.2) && (directionY < 0.2 && directionY > -0.2) && (rotation < 0.2 && rotation > -0.2)) {
+    		this.rightFrontWheel.updateSpeed(0);
+        	this.leftFrontWheel.updateSpeed(0);
+        	this.leftBackWheel.updateSpeed(0);
+        	this.rightBackWheel.updateSpeed(0);
+        	return;
+    	}
+    	
     	double L = this.wheelbase; 					//distance between front and back wheels
     	double W = this.trackwidth; 				//distance between front wheels
         double r = Math.sqrt ((L * L) + (W * W)); 	//radius of circle (actually it may be the diameter?)

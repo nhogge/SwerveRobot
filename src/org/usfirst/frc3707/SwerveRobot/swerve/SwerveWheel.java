@@ -25,11 +25,13 @@ public class SwerveWheel {
     }
 
     public void updateRotation(double newAngle){
+    	newAngle = newAngle + offset;
+    	
     	if(newAngle < 0) {
-            rotation.setSetpoint(360 - (newAngle * -1) + offset);
+            rotation.setSetpoint(360 - (newAngle * -1));
     	}
     	else {
-            rotation.setSetpoint(newAngle + offset);
+    		rotation.setSetpoint(newAngle);
     	}
     }
 

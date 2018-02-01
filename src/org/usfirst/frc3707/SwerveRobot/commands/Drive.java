@@ -43,7 +43,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.driveSystem.drive(Robot.oi.xbox.getRawAxis(0), Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(2));
+    	Robot.driveSystem.drive(Robot.oi.xbox.getRawAxis(0), Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(4));
     }
 
     // Make this return true when this Command no longer needs to run execute()
