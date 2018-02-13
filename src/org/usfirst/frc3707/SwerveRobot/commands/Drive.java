@@ -45,7 +45,7 @@ public class Drive extends Command {
     @Override
     protected void execute() {
     	Robot.driveSystem.getCrabDistance();
-    	Robot.driveSystem.drive(Robot.oi.xbox.getRawAxis(0), Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(4));
+    	Robot.driveSystem.drive(Robot.oi.xbox.getRawAxis(0), Robot.oi.xbox.getRawAxis(1), Robot.oi.xbox.getRawAxis(4), Robot.oi.xbox.getRawButton(3), Robot.oi.xbox.getRawButton(2));
     }
 
     // Make this return true when this Command no longer needs to run execute()

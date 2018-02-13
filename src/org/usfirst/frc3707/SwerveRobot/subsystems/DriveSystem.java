@@ -80,8 +80,8 @@ public class DriveSystem extends Subsystem {
     	backLeftWheel.disable();
     	backRightWheel.disable();
     }
-    public void drive(double directionX, double directionY, double rotation) {
-    	swerve.drive(directionX, directionY, rotation);
+    public void drive(double directionX, double directionY, double rotation, boolean useGyro, boolean slowSpeed) {
+    	swerve.drive(directionX, directionY, rotation, useGyro, slowSpeed);
     
     	
     }

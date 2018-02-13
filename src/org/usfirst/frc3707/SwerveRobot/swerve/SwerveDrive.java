@@ -27,7 +27,7 @@ public class SwerveDrive implements PIDOutput {
         this.gyro = gyro;
     }
     
-    public void drive(double directionX, double directionY, double rotation) {
+    public void drive(double directionX, double directionY, double rotation, boolean useGyro, boolean slowSpeed) {
     	
     	//SmartDashboard.putNumber("directionX", directionX);
     	//SmartDashboard.putNumber("directionY", directionY);
@@ -90,13 +90,19 @@ public class SwerveDrive implements PIDOutput {
         double frontRightAngle = (Math.atan2 (b, d) / Math.PI) * 180;
         double frontLeftAngle = (Math.atan2 (b, c) / Math.PI) * 180;
         
-//        if(useGyro) {
-//           double gyroAngle = normalizeGyroAngle(gyro.getAngle()); 
-//        	 backRightAngle += gyroAngle;
-//           backLeftAngle += gyroAngle;
-//           frontRightAngle += gyroAngle;
-//           frontLeftAngle += gyroAngle;
-//        }
+        if(useGyro) {
+            double gyroAngle = normalizeGyroAngle(gyro.getAngle()); 
+            backRightAngle += gyroAngle;
+            backLeftAngle += gyroAngle;
+            frontRightAngle += gyroAngle;
+            frontLeftAngle += gyroAngle;
+        }
+        if(slowSpeed) {
+        	backRightSpeed *= 0.5;
+        	backLeftSpeed *= 0.5;
+        	frontRightSpeed *= 0.5;
+        	frontLeftSpeed *= 0.5;
+        }
         
         //update the actual motors
     	this.rightFrontWheel.drive(frontRightSpeed, frontRightAngle);
@@ -110,8 +116,7 @@ public class SwerveDrive implements PIDOutput {
 	public void pidWrite(double output) {
 		System.out.println("X");
 		System.out.println(output);
-		drive(output, 0, 0);
-		
+		drive(output, 0, 0, false, false);
 	}
 
     public double normalizeGyroAngle(double angle){
